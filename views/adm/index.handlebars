@@ -1,0 +1,29 @@
+<h2> Lista de filmes cadastrados:</h2>
+<hr>
+
+<a href="filmes/adicionar"><button class="btn btn-success">Adicionar novo filme</button></a>
+
+{{#each filmes}}
+  <div class='card mt-4'>
+    <div class='card-body'>
+      <h4>{{nome}}</h4>
+      <small>Diretor: {{diretor}}</small>
+      <br>
+      <small>Idioma: {{idioma}}</small>
+      <br>
+      <small>Categoria: {{categoria}}</small>
+      <br>
+     <small>Adicionado em : {{moment date format='DD/MM/YYYY HH:MM'}}</small>
+     <br>
+     <a href="/filmes/editar/{{_id}}"><button class="btn btn-warning btn-sm mt-4">Editar Filme</button></a>
+
+     <form action="/filmes/deletar" method="post">
+       <input type="hidden" name="id" value="{{_id}}">
+       <button type="submit" class="btn btn-danger btn-sm mt-1">Deletar Filme</button>
+     </form>
+    </div>
+  </div>
+
+{{else}}
+<h4 class="mt-4" >Nenhum filme registrado!</h4>
+{{/each}}
